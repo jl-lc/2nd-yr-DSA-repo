@@ -1,31 +1,24 @@
 # ECE 250 C++ Algo Projects Repo
 Repository containing completed C++ projects of interest in ECE 250 course
+
+---
 ## P1 - Linked List Calculator
 This calculator takes in user commands and adds and stubtracts variables stored in the linked list using a linked list class. Utilized OOP.
-| **Command** | **Parameters** | **Description** | **Output** |
-|-------------|----------------|-----------------|------------|
-| CRT         | N              | Create a new linked list to store variables. This linked list should be able to contain a maximum of N variable names. Note that N is to prevent the list from hitting hardware constraints. You may assume CRT starts every test file and that N can be read as a positive integer. You may assume that CRT appears only once per input file.                | **success**    |
-| DEF         | name val       | Define a new variable with name “name”. This variable must store value val. You may assume that name is always a valid C++ variable name, but you must verify that the variable does not already exist in the list. You may assume that val can be read as a double.                | **success** (if the linked list is not yet at capacity) **failure** (if the linked list is at capacity or the variable exists)           |
-| ADD         | x y z          | Add the values stored in variable names x and y and then store the result in the variable name z. This is equivalent to the following C++ statement: z = x+y; Note that duplicate names are allowed in this command                | **success** (if all three variables exist) **failure** (if any of the three variables does not exist)       |
-| SUB         | x y z          |  Subtract the values stored in variable names x and y and then store the result in the variable name z. This is equivalent to the following C++ statement: z = x-y; Note that duplicate names are allowed in this command                | **success** (if all three variables exist) **failure** (if any of the three variables does not exist)           |
-| REM         | x              |  Remove the variable name x from the list               |  **success** (if the variable exists and has been removed) **failure** (if the variable does not exist in the list)          |
-| PRT         | x              | Prints the value of the variable name x                | If the variable name (x) exists: prints the numerical value stored in the variable x followed by a newline If the variable name (x) does not exist, print this followed by a new line: variable x not found           |
-| END         |                |   All input files finish with end              |            |
+
+_see jlc2lam_design_p1.pdf in p1 folder for in-depth description of the functions, design choices, and time complexity analysis._
+
+---
 ## P2 - Hashing and Virtual Memory
 A virtual memory emulator with hash table data structure. The hash table resolves collisions using an option between open addressing with double hashing and separate chaining. Memory will be represented by an array of integers of size N. Pages are contiguous blocks of memory within this array of size P. The size of the hash table then is 𝑚 = 𝑁/𝑃. For this project, N and P are chosen in such a way that m is an integer power of 2 and N is an integer multiple of P. You may assume that virtual pointers for all processes begin at virtual address 0 and end at P-1. When all 𝑚 blocks are allocated, the hash table is said to be “full”.
 ### Primary hash function
 ℎ1(𝑘) = 𝑘 𝑚𝑜𝑑 𝑚, where k is the key and m is the size of the hash table.
 ### Secondary hash function
-The
-secondary hash function is ℎ2(𝑘) = ⌊𝑘/𝑚⌋ 𝑚𝑜𝑑 𝑚. Since ℎ2(𝑘) must be an odd number, add 1 to the resulting value if this value is even. Therefore, the hash values will be given by ℎ(𝑘, 𝑖) = (ℎ1(𝑘) + 𝑖 ∗ ℎ2(𝑘)) 𝑚𝑜𝑑 𝑚, where 𝑖 is an index variable from 0 to m-1.
-| **Command**  | **Parameters** | **Description**                                                                             | **Output**  |
-|--------------|----------------|---------------------------------------------------------------------------------------------|-------------|
-| OPEN/ORDERED |                |  | |
-| M            | N P            | Selection between open addressing or separate chaining respectively for collision handling. | **success**  |
-| INSERT       | PID            | Insert a PID (a key). If it is possible, a new page of memory is allocated to PID. Note that regardless of the type of hashing used, if all pages are used insertion is not possible and the table is considered to be full. Your program must keep track of which page is allocated to which process or the commands below will not work. Assume PID > 0; this means that 0 can be used as a sentinel value. | **success** (if the insertion was successful) **failure** (if the insertion was unable to complete since the table was full or the key was already there) |
-| SEARCH       | PID            | Search for the key PID in the table. | **found PID in p** (if the desired key was found in the position p of the hash table) **not found** (if the desired key was not found) |
-| WRITE        | PID ADDR x     | Write the integer (x) to the memory address. Please take into account that both PID and ADDR (virtual address) are given to determine the physical address as discussed earlier in this document | **success** (if the PID was found in the table and ADDR is within the virtual address space allocated to the process) **failure** (if the PID was not found or the address is outside of the virtual address space) |
-| READ         | PID ADDR       | Read the integer stored in the memory address. Please take into account that both PID and ADDR are given to determine the physical address as discussed above. | **ADDR x** (This command prints the value of the integer (x) stored in that memory location (ADDR) followed by a newline if the PID is found in the table and ADDR is within the virtual address space allocated to the process) **failure** (if the PID was not found or the address is outside of the virtual address space) |
-| DELETE       | PID            | Delete the key PID from the hash table. NOTE: This de-allocates the memory page associated with that PID, but you do not need to do anything with the memory stored there. | **success** (if the deletion was successful) **failure** (if the deletion was unable to complete since the key was not found in the hash table) |
-| PRINT        | m              | Print the chain of stored keys in position m of the hash table. Keys should be printed in descending order. Keys in the chain are separated by one space. The output indicates that the chain is empty if that is the case. NOTE: This command is only for separate chaining. It will not be used to test double hashing. | **chain is empty** (if position has an empty chain, else print the chain in descending order) |
-| END          |                | All input files finish with END command. |  |
+The secondary hash function is ℎ2(𝑘) = ⌊𝑘/𝑚⌋ 𝑚𝑜𝑑 𝑚. Since ℎ2(𝑘) must be an odd number, add 1 to the resulting value if this value is even. Therefore, the hash values will be given by ℎ(𝑘, 𝑖) = (ℎ1(𝑘) + 𝑖 ∗ ℎ2(𝑘)) 𝑚𝑜𝑑 𝑚, where 𝑖 is an index variable from 0 to m-1.
+
+_see jlc2lam_design_p2.pdf in p2 folder for in-depth description of the functions, design choices, and time complexity analysis._
+
+---
+## P3 - Trie ADT Spellcheck
+A trie data structure spellchecker implementation vaild only with the 26 uppercase English letters. Functions include inserting words, erasing words, printing words etc. into the trie, as well as spellcheck.
+
+_see jlc2lam_design_p3.pdf in p3 folder for in-depth description of the functions, design choices, and time complexity analysis._
