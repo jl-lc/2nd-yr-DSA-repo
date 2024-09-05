@@ -1,5 +1,5 @@
-# ECE 250 C++ Algo Projects Repo
-Repository containing completed C++ projects of interest in ECE 250 course
+# C++ Data Structures and Algorithms Projects Repo
+Repository containing completed C++ projects of interest in 2nd year course
 
 ---
 ## P1 - Linked List Calculator
